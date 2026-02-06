@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>voidmarket | Premium Global</title>
+    <style>
+        :root {
+            --gold: #ffcc00;
+            --red: #ff4757;
+            --dark: #0a0a0a;
+            --gray: #151515;
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(0,0,0,0.95);
+            padding: 15px 5%;
+            position: fixed;
+            width: 90%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+
+        .search-box input {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #444;
+            background: #222;
+            color: white;
+            width: 250px;
+            outline: none;
+        }
+
+        .cart-trigger {
+            background: var(--gold);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .cart-trigger:hover {
+                transform: scale(1.05);
+            }
+
+        /* Ürün Grid Alanı */
+        .container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        /* Kart Tasarımı */
+        .card {
+            background: var(--gray);
+            border-radius: 25px;
+            padding: 20px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+            .card:hover {
+                border-color: var(--gold);
+                transform: translateY(-10px);
+            }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 18px;
+                margin-bottom: 15px;
+                background: #222;
+            }
+
+            .card h3 {
+                margin: 10px 0;
+                font-size: 1.3em;
+            }
+
+        .price-tag {
+            color: var(--gold);
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Yan Sepet Menüsü */
+        #side-cart {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 340px;
+            height: 100%;
+            background: #0f0f0f;
+            z-index: 2000;
+            transition: 0.5s;
+            padding: 30px;
+            border-left: 2px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+            #side-cart.active {
+                right: 0;
+            }
+
+        .cart-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--gold);
+        }
+
+        /* Miktar Kontrolleri */
+        .qty-btns {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .q-btn {
+            background: #333;
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            .q-btn:hover {
+                background: var(--gold);
+                color: black;
+            }
+
+        /* Ödeme Modal */
+        #payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #111;
+            padding: 35px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--gold);
+            text-align: center;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #050505;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .pay-btn {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Harita Alanı (RENKLİ VE KARTAL ODAKLI) */
+        footer {
+            background: #050505;
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .map-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="location.reload()">voidmarket</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Zevkine göre ara..." onkeyup="searchItems()">
+        </div>
+        <button class="cart-trigger" onclick="toggleCart()">🛒 Sepet (<span id="cart-count">0</span>)</button>
+    </nav>
+
+    <div class="container">
+        <div id="product-grid" class="grid"></div>
+    </div>
+
+    <div id="side-cart">
+        <h2 style="color:var(--gold); margin:0;">Sepetiniz</h2>
+        <div id="cart-list" class="cart-list"></div>
+        <div style="border-top: 1px solid #333; padding-top: 20px;">
+            <h3 style="display:flex; justify-content:space-between;">Toplam: <span id="total-price" style="color:var(--gold)">$0.00</span></h3>
+            <button class="pay-btn" onclick="openPayment()">Ödemeye Geç</button>
+            <button onclick="toggleCart()" style="background:none; border:none; color:#888; width:100%; margin-top:10px; cursor:pointer;">Alışverişe Devam Et</button>
+        </div>
+    </div>
+
+    <div id="payment-modal">
+        <div class="modal-box">
+            <h2 style="color:var(--gold)">Siparişi Tamamla</h2>
+            <form action="https://formspree.io/f/mkovwdyw" method="POST">
+                <input type="hidden" name="Siparis_Detayi" id="cart-hidden-input">
+                <input type="text" name="Musteri_Ad" placeholder="Adınız Soyadınız" class="form-input" required>
+                <input type="tel" name="Musteri_Tel" placeholder="Telefon Numaranız" class="form-input" required>
+                <input type="email" name="Musteri_Email" placeholder="E-posta Adresiniz" class="form-input" required>
+                <select name="Odeme_Yontemi" class="form-input">
+                    <option value="Kredi Kartı">Kredi Kartı / Banka Kartı</option>
+                    <option value="Kapıda Ödeme">Kapıda Ödeme</option>
+                    <option value="Kripto">Kripto Para (BTC/ETH)</option>
+                </select>
+                <textarea name="Adres" placeholder="Teslimat Adresi" class="form-input" style="height:80px" required></textarea>
+                <button type="submit" class="pay-btn">Ödemeyi Onayla</button>
+                <button type="button" onclick="closePayment()" style="background:none; border:none; color:white; margin-top:10px; cursor:pointer;">Vazgeç</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <h2 style="color:var(--gold); margin-bottom:10px;">Eşek Döner & voidmarket</h2>
+        <p style="color:#888; margin-bottom:20px;">Kartal Şeyh Şamil Ortaokulu Yanı, No: 1</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3016.1425110137574!2d29.2081545!3d40.8906935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac46950000001%3A0x6a05e56e3089d554!2zxZ5leeG6rSDFnmFtaWwgT3J0YW9rdWx1!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+                    width="1200" height="450" style="border:0; width:100%;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <p style="color:#444; margin-top:20px;">© 2026 voidmarket. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "Gurme Burger", price: 18.50, img: "urun1.jpg" },
+            { id: 2, name: "Sushi Özel Set", price: 45.00, img: "urun2.jpg" },
+            { id: 3, name: "Somon Sashimi", price: 55.00, img: "urun3.jpg" },
+            { id: 4, name: "İtalyan Spagetti", price: 22.00, img: "urun4.jpg" },
+            { id: 5, name: "Wagyu Antrikot", price: 95.00, img: "urun5.jpg" },
+            { id: 6, name: "Premium Salata", price: 15.00, img: "urun6.jpg" },
+            { id: 7, name: "Etli Premium Tako", price: 19.50, img: "urun7.jpg" },
+            { id: 8, name: "Napoliten Pizza", price: 28.00, img: "urun8.jpg" },
+            { id: 9, name: "Meyveli Pankek", price: 12.50, img: "urun9.jpg" },
+            { id: 10, name: "Ballı Pankek", price: 12.50, img: "urun10.jpg" },
+            { id: 11, name: "Tonkotsu Ramen", price: 32.00, img: "urun11.jpg" },
+            { id: 12, name: "Eşek Döner Special", price: 14.00, img: "urun12.jpg" }
+        ];
+
+        let cart = [];
+
+        function renderProducts(data) {
+            document.getElementById('product-grid').innerHTML = data.map(p => `
+                        <div class="card">
+                            <img src="${p.img}" alt="${p.name}">
+                            <h3>${p.name}</h3>
+                            <div class="price-tag">$${p.price.toFixed(2)}</div>
+                            <button class="cart-trigger" style="width:100%" onclick="addToCart(${p.id})">Sepete Ekle</button>
+                        </div>
+                    `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const found = cart.find(item => item.id === id);
+            if (found) { found.qty++; } else { cart.push({ ...product, qty: 1 }); }
+            updateUI();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            updateUI();
+        }
+
+        function updateUI() {
+            const list = document.getElementById('cart-list');
+            let total = 0;
+            let count = 0;
+
+            list.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                return `
+                            <div class="cart-item">
+                                <div>
+                                    <strong>${item.name}</strong><br>
+                                    <small>$${item.price.toFixed(2)} x ${item.qty}</small>
+                                </div>
+                                <div class="qty-btns">
+                                    <button class="q-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                                    <span>${item.qty}</span>
+                                    <button class="q-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                        `;
+            }).join('');
+
+            document.getElementById('total-price').innerText = "$" + total.toFixed(2);
+            document.getElementById('cart-count').innerText = count;
+            document.getElementById('cart-hidden-input').value = JSON.stringify(cart);
+        }
+
+        function searchItems() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(q));
+            renderProducts(filtered);
+        }
+
+        function toggleCart() { document.getElementById('side-cart').classList.toggle('active'); }
+        function openPayment() { if (cart.length > 0) document.getElementById('payment-modal').style.display = 'flex'; }
+        function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
+
+        renderProducts(products);
+    </script>
+</body>
+</html>
