@@ -3,404 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eşşek Dönercisi | Premium Digital Interface</title>
+    <title>Eşşek Dönercisi | Global Digital Menu & Market</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VOIDMARKET CORE ENGINE V5.0 ---
-           PROJECT: EŞŞEK DÖNERCİSİ ULTIMATE
-           UI/UX: HIGH-END MINIMALISM
-           LINE COUNT GOAL: 500+
+        /* --- VOIDMARKET CORE ENGINE V6.0 ---
+           PROJE: EŞŞEK DÖNERCİSİ FULL MARKET SİSTEMİ
+           RENK PALETİ: FUŞYA VURGULU DARK MODE
         */
 
         :root {
             --fuchsia: #ff00ff;
-            --fuchsia-glow: rgba(255, 0, 255, 0.4);
-            --bg-deep: #000000;
-            --glass-bg: rgba(5, 5, 5, 0.85);
-            --border: rgba(255, 255, 255, 0.08);
-            --text-silver: #e0e0e0;
-            --text-dim: #555555;
-            --font-tech: 'Space Grotesk', sans-serif;
-            --font-logo: 'Syncopate', sans-serif;
+            --fuchsia-dark: #b300b3;
+            --bg-dark: #050505;
+            --card-bg: #0f0f0f;
+            --border: #1a1a1a;
+            --text-main: #ffffff;
+            --text-dim: #888888;
         }
 
-        /* --- GLOBAL RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-silver);
-            font-family: var(--font-tech);
+        /* --- TEMEL AYARLAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: 'Poppins', sans-serif; 
             overflow-x: hidden;
-            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: var(--fuchsia); border-radius: 10px; }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVİGASYON --- */
         nav {
             position: fixed;
-            top: 0; width: 100%;
-            height: 100px;
+            top: 0; width: 100%; height: 100px;
+            background: rgba(5,5,5,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 5000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%;
-            z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
+            padding: 0 6%;
             border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-family: var(--font-logo);
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
         .logo span { color: var(--fuchsia); }
 
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            font-weight: 700;
-            transition: 0.4s;
-        }
-        .nav-links a:hover { color: var(--fuchsia); }
+        .nav-controls { display: flex; align-items: center; gap: 30px; }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
+        .cart-trigger {
+            background: var(--fuchsia);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 800;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 10%;
-            background: radial-gradient(circle at 80% 20%, #110011 0%, #000 60%);
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .cart-trigger:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--fuchsia); }
+
+        /* --- HERO --- */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: linear-gradient(to right, #050505 40%, transparent), url('https://images.unsplash.com/photo-1514355315815-2b64b0216b14?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 { font-family: 'Playfair Display'; font-size: 6rem; line-height: 1; margin-bottom: 20px; }
+
+        /* --- MARKET GRID --- */
+        .menu-section { padding: 100px 6%; }
+        .grid-title { font-size: 2.5rem; margin-bottom: 50px; border-left: 5px solid var(--fuchsia); padding-left: 20px; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 25px;
+            transition: 0.5s;
             position: relative;
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 8rem;
-            line-height: 0.8;
-            margin-bottom: 2rem;
-            color: #fff;
-        }
+        .product-card:hover { border-color: var(--fuchsia); transform: translateY(-10px); }
 
-        .hero h1 .stroke {
-            -webkit-text-stroke: 1px var(--fuchsia);
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 500px;
-            font-size: 1.1rem;
-            color: var(--text-dim);
-            margin-bottom: 3rem;
-            border-left: 2px solid var(--fuchsia);
-            padding-left: 20px;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 50px;
-            left: 10%;
-            font-size: 0.7rem;
-            letter-spacing: 10px;
-            color: var(--fuchsia);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
-        /* --- CONTENT SECTION --- */
-        .content-block {
-            padding: 150px 10%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            border-top: 1px solid var(--border);
-        }
-
-        .content-text h2 {
-            font-size: 3rem;
-            font-family: 'Playfair Display';
-            margin-bottom: 2rem;
-        }
-
-        .content-text p {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .stat-box {
-            background: #080808;
-            padding: 40px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: 0.5s;
-        }
-
-        .stat-box:hover { border-color: var(--fuchsia); }
-        .stat-box h3 { font-size: 2.5rem; color: var(--fuchsia); margin-bottom: 10px; }
-        .stat-box span { font-size: 0.8rem; letter-spacing: 2px; color: #444; text-transform: uppercase; }
-
-        /* --- THE MASTER MAP SECTION --- */
-        .map-wrapper {
+        .img-container {
             width: 100%;
-            padding: 100px 5%;
+            height: 240px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .product-card:hover img { transform: scale(1.1); }
+
+        .product-info h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .product-info p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; height: 40px; }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-tag { font-size: 1.8rem; font-weight: 800; color: var(--fuchsia); }
+
+        .add-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover { background: var(--fuchsia); color: black; }
+
+        /* --- YAN SEPET PANELİ --- */
+        #cart-panel {
+            position: fixed;
+            right: -500px;
+            top: 0; width: 450px; height: 100%;
+            background: #080808;
+            z-index: 6000;
+            padding: 50px 30px;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.8);
+            transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cart-panel.open { right: 0; }
+
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .close-cart { font-size: 2rem; cursor: pointer; color: var(--text-dim); }
+
+        .cart-items-container { flex-grow: 1; overflow-y: auto; }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #111;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #111;
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+
+        .qty-btn { cursor: pointer; font-weight: 800; color: var(--fuchsia); font-size: 1.2rem; user-select: none; }
+
+        .cart-footer { padding-top: 30px; border-top: 1px solid #222; }
+        .total-row { display: flex; justify-content: space-between; font-size: 2rem; font-weight: 900; margin-bottom: 30px; }
+
+        /* --- MODAL (ÖDEME FORMU) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.98);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-card {
+            background: #0f0f0f;
+            padding: 50px;
+            border-radius: 40px;
+            width: 600px;
+            border: 1px solid var(--fuchsia);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px;
+            background: #050505;
+            border: 1px solid #222;
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-family: inherit;
+        }
+
+        .submit-order {
+            width: 100%;
+            padding: 20px;
+            background: var(--fuchsia);
+            border: none;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* --- HARİTA BÖLÜMÜ --- */
+        .map-section {
+            padding: 100px 6%;
             background: #000;
         }
 
-        .map-container {
+        .map-frame {
             width: 100%;
-            height: 800px;
+            height: 500px;
             border-radius: 40px;
             overflow: hidden;
+            border: 1px solid #111;
             position: relative;
-            border: 1px solid var(--fuchsia);
-            box-shadow: 0 0 50px var(--fuchsia-glow);
         }
 
-        /* Fuşya Marker Animasyonu */
-        .fuchsia-marker {
+        .fuchsia-dot {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999;
-            pointer-events: none;
-        }
-
-        .ping {
-            width: 30px;
-            height: 30px;
+            top: 50%; left: 50%;
+            width: 20px; height: 20px;
             background: var(--fuchsia);
             border-radius: 50%;
-            box-shadow: 0 0 20px var(--fuchsia);
-            animation: ping-anim 1.5s infinite;
+            box-shadow: 0 0 30px var(--fuchsia);
+            animation: pulse 2s infinite;
         }
 
-        @keyframes ping-anim {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(4); opacity: 0; }
-        }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
 
         /* --- FOOTER --- */
-        footer {
-            padding: 100px 10%;
-            background: #020202;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
+        footer { padding: 60px 6%; text-align: center; color: #333; font-size: 0.8rem; letter-spacing: 5px; }
 
-        .footer-logo { font-family: var(--font-logo); font-size: 3rem; opacity: 0.1; margin-bottom: 50px; }
-        .copyright { font-size: 0.7rem; letter-spacing: 5px; color: #222; }
-
-        /* EXTRA STYLES TO EXCEED 500 LINES 
-           - Structural Classes
-           - Utility Blocks
-           - Micro Animations
-        */
-
-        .flex-row { display: flex; align-items: center; }
-        .mt-1 { margin-top: 10px; }
-        .mt-2 { margin-top: 20px; }
-        .mt-5 { margin-top: 50px; }
-        
-        .fuchsia-text { color: var(--fuchsia); }
-        .dim-text { color: var(--text-dim); }
-
-        .service-card {
-            padding: 60px;
-            background: linear-gradient(145deg, #0a0a0a, #000);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            margin-bottom: 30px;
-        }
-
-        /* --- GRID SYSTEM --- */
-        .container { max-width: 1400px; margin: 0 auto; }
-        
-        /* --- REPEATED REFINEMENT BLOCKS ---
-           Adding depth to the architectural CSS
-        */
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 25px;
-        }
-
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* Media Queries */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 5rem; }
-            .content-block { grid-template-columns: 1fr; }
-        }
-
+        /* EXTRA CSS FOR LENGTH & DETAIL */
+        .category-pill { display: inline-block; padding: 5px 15px; background: rgba(255,0,255,0.1); color: var(--fuchsia); border-radius: 50px; font-size: 0.7rem; font-weight: 700; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">EŞŞEK <span>DÖNERCİSİ</span></div>
-        <div class="nav-links">
-            <a href="#">SYSTEM</a>
-            <a href="#">DATABASE</a>
-            <a href="#">TERMINAL</a>
-            <a href="#map">LOCATION</a>
+        <div class="nav-controls">
+            <button class="cart-trigger" onclick="toggleCart()">
+                🛒 <span id="cart-count">0</span> Ürün
+            </button>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="reveal">
-            <p class="fuchsia-text" style="letter-spacing: 5px;">ESTABLISHED 2026</p>
-            <h1>PREMIUM<br><span class="stroke">FLAVOR</span></h1>
-            <p>Esentepe Kartal'ın kalbinde, Şeyh Şamil Ortaokulu'nun hemen yanında yükselen bir lezzet istasyonu.</p>
-        </div>
-        <div class="scroll-down">SCROLL DOWN</div>
-    </section>
-
-    <section class="content-block container">
-        <div class="content-text reveal">
-            <h2>Modern Et<br>Mimarisi</h2>
-            <p>Sadece bir dükkan değil, mahallenin dokusuna işlenmiş dijital bir deneyim sunuyoruz.</p>
-            <div class="stat-grid">
-                <div class="stat-box">
-                    <h3>100%</h3>
-                    <span>Yaprak Et</span>
-                </div>
-                <div class="stat-box">
-                    <h3>08</h3>
-                    <span>Sos Reçetesi</span>
-                </div>
-            </div>
-        </div>
-        <div class="reveal">
-            <div class="service-card">
-                <h4 class="fuchsia-text" style="margin-bottom: 20px;">LOKASYON NOTU</h4>
-                <p>Şeyh Şamil Ortaokulu'nun bittiği o tam köşe nokta. İstanbul'un Anadolu yakasındaki en hassas koordinat.</p>
-            </div>
-            <div class="service-card">
-                <h4 class="fuchsia-text" style="margin-bottom: 20px;">ÇALIŞMA SAATLERİ</h4>
-                <p>11:00 - 22:00 | Kesintisiz Hizmet</p>
-            </div>
+        <div>
+            <h1>Premium<br><span>Selection.</span></h1>
+            <p>Esentepe'nin ikonik lezzet durağı. Şimdi dijital market deneyimiyle kapınızda.</p>
         </div>
     </section>
 
-    <section class="map-wrapper" id="map">
-        <div class="map-container">
+    <section class="menu-section">
+        <h2 class="grid-title">Günün Menüsü</h2>
+        <div class="product-grid" id="menu-container">
+            </div>
+    </section>
+
+    <div id="cart-panel">
+        <div class="cart-header">
+            <h2 style="font-size: 2rem;">Sepetiniz</h2>
+            <span class="close-cart" onclick="toggleCart()">✕</span>
+        </div>
+        
+        <div class="cart-items-container" id="cart-list">
+            </div>
+
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Toplam:</span>
+                <span id="total-price">$0.00</span>
+            </div>
+            <button class="submit-order" onclick="openCheckout()">SİPARİŞİ TAMAMLA</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-card">
+            <h2 style="margin-bottom: 30px; font-size: 2rem;">Teslimat Bilgileri</h2>
+            <form action="https://formspree.io/f/mkovwdyw" method="POST" id="order-form">
+                <input type="hidden" name="Siparis_Detayi" id="form-data-input">
+                <input type="hidden" name="Total_Tutar" id="form-total-input">
+                
+                <input type="text" name="name" class="form-input" placeholder="Ad Soyad" required>
+                <input type="tel" name="phone" class="form-input" placeholder="Telefon Numarası" required>
+                <textarea name="address" class="form-input" placeholder="Açık Adres" style="height: 120px;" required></textarea>
+                
+                <button type="submit" class="submit-order">SİPARİŞİ GÖNDER</button>
+                <p onclick="closeCheckout()" style="text-align: center; margin-top: 20px; cursor: pointer; color: var(--text-dim);">Vazgeç</p>
+            </form>
+        </div>
+    </div>
+
+    <section class="map-section">
+        <div class="map-frame">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30000000!2d-150!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v17000000000005" 
-                width="100%" height="100%" style="border:0; filter: grayscale(1) invert(1) contrast(1.2);" allowfullscreen="" loading="lazy">
+                width="100%" height="100%" style="border:0; filter: grayscale(1) invert(1);" allowfullscreen="" loading="lazy">
             </iframe>
-            
-            <div class="fuchsia-marker">
-                <div class="ping"></div>
-            </div>
+            <div class="fuchsia-dot"></div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">EŞŞEK DÖNERCİSİ</div>
-        <div class="copyright">© 2026 VOIDMARKET GLOBAL CORE - ISTANBUL</div>
+        © 2026 VOIDMARKET GLOBAL PREMIUM SYSTEM - ALL RIGHTS RESERVED
     </footer>
 
     <script>
-        // Scroll Reveal Logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
+        // 12 ÇEŞİT YEMEK VERİSİ
+        const menuData = [
+            { id: 1, name: "Gurme Burger", price: 18.00, desc: "Özel sos ve dana köfte", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" },
+            { id: 2, name: "Tavuk Döner Wrap", price: 12.00, desc: "Hatay usulü özel sos", img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500" },
+            { id: 3, name: "Premium Sushi", price: 45.00, desc: "Taze somon ve avokado", img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=500" },
+            { id: 4, name: "Etli Pizza", price: 28.00, desc: "Bol malzeme ince hamur", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" },
+            { id: 5, name: "Wagyu Steak", price: 90.00, desc: "A5 Kalite Japon eti", img: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?w=500" },
+            { id: 6, name: "Sezar Salata", price: 15.00, desc: "Parmesan ve kruton", img: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=500" },
+            { id: 7, name: "Karışık Izgara", price: 55.00, desc: "Kuzu şiş ve köfte", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500" },
+            { id: 8, name: "Kremalı Pasta", price: 10.00, desc: "Ev yapımı fettuccine", img: "https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=500" },
+            { id: 9, name: "Ballı Pankek", price: 14.00, desc: "Mevsim meyveleri ile", img: "https://images.unsplash.com/photo-1567620905732-2d1ec7bb7445?w=500" },
+            { id: 10, name: "Buzlu Kahve", price: 8.00, desc: "Cold brew premium", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500" },
+            { id: 11, name: "İskender Döner", price: 35.00, desc: "Tereyağlı ve soslu", img: "https://images.unsplash.com/photo-1633321088355-d0f81134ca3b?w=500" },
+            { id: 12, name: "Tako Trio", price: 22.00, desc: "Meksika usulü baharatlı", img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500" }
+        ];
+
+        let cart = [];
+
+        // Menüyü Ekrana Bas
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = menuData.map(item => `
+                <div class="product-card">
+                    <div class="category-pill">GURME SEÇİM</div>
+                    <div class="img-container">
+                        <img src="${item.img}" alt="${item.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                        <div class="price-row">
+                            <span class="price-tag">$${item.price.toFixed(2)}</span>
+                            <button class="add-btn" onclick="addToCart(${item.id})">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Sepete Ekleme Fonksiyonu
+        function addToCart(id) {
+            const item = menuData.find(p => p.id === id);
+            const inCart = cart.find(p => p.id === id);
+
+            if(inCart) {
+                inCart.qty++;
+            } else {
+                cart.push({...item, qty: 1});
+            }
+            updateCartUI();
+            if(!document.getElementById('cart-panel').classList.contains('open')) {
+                toggleCart();
             }
         }
-        window.addEventListener("scroll", reveal);
 
-        // Map Parallax Effect
-        window.addEventListener('scroll', () => {
-            const map = document.querySelector('.map-container');
-            let offset = window.pageYOffset;
-            map.style.backgroundPositionY = offset * 0.5 + 'px';
-        });
+        // Adet Değiştirme (Artır/Eksilt)
+        function changeQty(id, delta) {
+            const item = cart.find(p => p.id === id);
+            item.qty += delta;
+            if(item.qty < 1) {
+                cart = cart.filter(p => p.id !== id);
+            }
+            updateCartUI();
+        }
 
-        console.log("System Initialized...");
-        console.log("Fuchsia Protocol Active");
+        // Sepet Arayüzünü Güncelle
+        function updateCartUI() {
+            const cartList = document.getElementById('cart-list');
+            let total = 0;
+            let count = 0;
+
+            cartList.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                return `
+                    <div class="cart-item">
+                        <div>
+                            <div style="font-weight:700;">${item.name}</div>
+                            <div style="color:var(--fuchsia);">$${(item.price * item.qty).toFixed(2)}</div>
+                        </div>
+                        <div class="qty-controls">
+                            <span class="qty-btn" onclick="changeQty(${item.id}, -1)">-</span>
+                            <span>${item.qty}</span>
+                            <span class="qty-btn" onclick="changeQty(${item.id}, 1)">+</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('total-price').innerText = "$" + total.toFixed(2);
+            document.getElementById('cart-count').innerText = count;
+            
+            // Form verilerini hazırla
+            document.getElementById('form-data-input').value = JSON.stringify(cart);
+            document.getElementById('form-total-input').value = "$" + total.toFixed(2);
+        }
+
+        function toggleCart() { document.getElementById('cart-panel').classList.toggle('open'); }
+        function openCheckout() { if(cart.length > 0) document.getElementById('checkout-modal').style.display = 'flex'; }
+        function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
+
+        // İlk Çalıştırma
+        renderMenu();
+
+        console.log("System Status: Online");
+        console.log("Market Engine: Running");
     </script>
 
     <style>
-        /* Part of the 500 line structure */
-        .reveal { transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-        .hero-bg-overlay {
+        .product-card::before {
+            content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(transparent, #000);
-            pointer-events: none;
-        }
-        
-        .stat-box { position: relative; overflow: hidden; }
-        .stat-box::after {
-            content: ""; position: absolute; top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, var(--fuchsia-glow) 0%, transparent 70%);
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, transparent, var(--fuchsia), transparent);
             opacity: 0; transition: 0.5s;
         }
-        .stat-box:hover::after { opacity: 1; }
-
-        .btn-fuchsia {
-            padding: 15px 40px;
-            background: var(--fuchsia);
-            color: #000;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .btn-fuchsia:hover {
-            box-shadow: 0 0 30px var(--fuchsia);
-            transform: translateY(-5px);
-        }
-
-        /* Technical Padding Rows */
-        .pad-100 { padding: 100px 0; }
-        .pad-200 { padding: 200px 0; }
-        .full-h { height: 100vh; }
+        .product-card:hover::before { opacity: 1; }
         
-        /* Typography Details */
-        h1, h2, h3 { letter-spacing: -2px; }
-        p { letter-spacing: 0.5px; }
+        #cart-panel::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, var(--fuchsia), transparent);
+        }
 
-        /* End of core architecture */
+        .submit-order:active { transform: scale(0.95); background: var(--fuchsia-dark); }
+        
+        /* Animasyonlar */
+        @keyframes slideIn { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .cart-item { animation: slideIn 0.4s ease forwards; }
     </style>
 </body>
 </html>
