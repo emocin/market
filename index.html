@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eşşek Dönercisi | Global voidmarket Luxury</title>
+    <title>Eşşek Dönercisi | voidmarket Global Luxury Edition</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- GLOBAL DEĞİŞKENLER & RESET --- */
+        /* --- GELİŞMİŞ CSS DEĞİŞKENLERİ --- */
         :root { 
             --gold: #ffcc00; 
-            --gold-hover: #e6b800;
+            --gold-light: #ffdb4d;
+            --gold-dark: #cca300;
             --red: #ff4757; 
-            --dark-body: #050505; 
+            --red-hover: #ff2e44;
+            --dark-bg: #050505; 
             --card-bg: #0f0f0f; 
             --card-border: #1a1a1a;
+            --nav-bg: rgba(5, 5, 5, 0.98);
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
-            --nav-bg: rgba(5, 5, 5, 0.98);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- GLOBAL RESET & TEMELLER --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body { 
-            background: var(--dark-body); 
+            background: var(--dark-bg); 
             color: var(--text-main); 
             font-family: 'Poppins', sans-serif; 
             line-height: 1.6;
@@ -32,458 +36,582 @@
             scroll-behavior: smooth;
         }
 
-        /* --- ÖZEL SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 10px; }
+        /* --- ÖZEL TASARIM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 5px; border: 2px solid #050505; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--dark-bg), var(--gold), var(--dark-bg)); 
+            border-radius: 10px; 
+            border: 3px solid #050505; 
+        }
 
-        /* --- NAVIGASYON --- */
+        /* --- PROFESYONEL NAVİGASYON --- */
         nav { 
             background: var(--nav-bg); 
             padding: 20px 6%; 
             position: fixed; 
             width: 100%; 
             top: 0; 
-            z-index: 5000; 
+            z-index: 9999; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid #1a1a1a; 
-            backdrop-filter: blur(15px);
-            box-sizing: border-box;
+            backdrop-filter: blur(20px);
         }
 
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo { 
+        .logo-box { display: flex; flex-direction: column; }
+        .logo-main { 
             color: var(--gold); 
             font-family: 'Playfair Display', serif;
-            font-size: 2em; 
-            font-weight: 800; 
-            letter-spacing: 1px; 
-            cursor: pointer;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+            font-size: 2.2em; 
+            font-weight: 900; 
+            letter-spacing: -1px;
+            line-height: 1;
         }
+        .logo-sub { font-size: 0.6em; letter-spacing: 5px; color: var(--text-dim); text-transform: uppercase; }
 
-        .search-wrapper { position: relative; display: flex; align-items: center; }
-        .search-wrapper input { 
-            width: 280px; 
-            padding: 12px 25px; 
+        .search-container { position: relative; }
+        .search-container input { 
+            width: 300px; 
+            padding: 14px 25px; 
             border-radius: 50px; 
             border: 1px solid #222; 
             background: #111; 
             color: white; 
-            font-size: 0.95em;
-            outline: none; 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            font-family: inherit;
+            transition: var(--transition);
         }
 
-        .search-wrapper input:focus { 
-            width: 450px; 
+        .search-container input:focus { 
+            width: 500px; 
             border-color: var(--gold); 
-            background: #161616;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.1);
+            box-shadow: 0 0 40px rgba(255, 204, 0, 0.15);
         }
 
-        .cart-btn { 
-            background: linear-gradient(135deg, var(--gold), #ffdb4d); 
+        .action-btns { display: flex; gap: 20px; align-items: center; }
+        
+        .cart-toggle-btn { 
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark)); 
             color: #000; 
-            padding: 12px 28px; 
-            border-radius: 15px; 
-            font-weight: 700; 
+            padding: 12px 30px; 
+            border-radius: 18px; 
+            font-weight: 800; 
             cursor: pointer; 
             border: none; 
-            transition: 0.4s;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.2);
+            gap: 12px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.2);
         }
 
-        .cart-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4); }
+        .cart-toggle-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 204, 0, 0.4); }
 
-        /* --- HERO SECTION --- */
-        .hero { 
-            height: 80vh;
+        /* --- PREMİUM HERO BÖLÜMÜ --- */
+        .hero-section { 
+            height: 90vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 10%;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.7), var(--dark-body)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            padding: 0 8%;
+            background: linear-gradient(90deg, #050505 30%, transparent), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            margin-bottom: 50px;
+            position: relative;
         }
 
-        .hero h1 { font-size: 4.5em; font-family: 'Playfair Display', serif; margin-bottom: 20px; line-height: 1.1; }
-        .hero p { font-size: 1.3em; color: var(--text-dim); max-width: 700px; margin-bottom: 35px; }
+        .hero-content { max-width: 800px; animation: fadeInUp 1.2s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- ÜRÜN KARTLARI --- */
-        .main-container { max-width: 1400px; margin: 0 auto; padding: 40px 6%; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 5.5em; line-height: 1; margin-bottom: 25px; }
+        .hero-content h1 span { color: var(--gold); }
+        .hero-content p { font-size: 1.4em; color: var(--text-dim); margin-bottom: 40px; }
+
+        /* --- ÜRÜN GRID SİSTEMİ --- */
+        .main-wrapper { max-width: 1500px; margin: 0 auto; padding: 100px 6%; }
         
-        .section-header { 
+        .grid-header { 
             display: flex; 
             justify-content: space-between; 
-            align-items: flex-end; 
-            margin-bottom: 50px;
-            border-bottom: 1px solid #111;
-            padding-bottom: 20px;
+            align-items: center; 
+            margin-bottom: 60px;
+            border-left: 8px solid var(--gold);
+            padding-left: 25px;
         }
 
-        .section-header h2 { font-size: 2.5em; font-family: 'Playfair Display', serif; }
+        .grid-header h2 { font-size: 3em; font-family: 'Playfair Display', serif; }
 
-        .product-grid { 
+        .menu-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 40px; 
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+            gap: 45px; 
         }
 
         .product-card { 
             background: var(--card-bg); 
-            border-radius: 35px; 
-            padding: 25px; 
+            border-radius: 40px; 
+            padding: 30px; 
             border: 1px solid var(--card-border); 
-            transition: all 0.5s ease; 
+            transition: var(--transition);
             position: relative;
-            overflow: hidden;
+            cursor: pointer;
         }
 
         .product-card:hover { 
-            transform: translateY(-20px); 
-            border-color: var(--gold); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            transform: translateY(-20px) scale(1.02); 
+            border-color: var(--gold);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        .image-container { 
+        .img-wrapper { 
             width: 100%; 
-            height: 250px; 
+            height: 280px; 
+            border-radius: 30px; 
             overflow: hidden; 
-            border-radius: 25px; 
-            margin-bottom: 20px;
+            margin-bottom: 25px; 
+            position: relative;
         }
 
-        .product-card img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: 0.8s;
-        }
+        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; }
+        .product-card:hover img { transform: scale(1.15); }
 
-        .product-card:hover img { transform: scale(1.1) rotate(2deg); }
-
-        .badge {
+        .category-tag {
             position: absolute;
             top: 20px;
-            right: 20px;
-            background: var(--red);
-            padding: 6px 15px;
-            border-radius: 10px;
-            font-size: 0.8em;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-size: 0.75em;
             font-weight: 700;
-            z-index: 5;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .product-info h3 { font-size: 1.5em; margin-bottom: 10px; }
-        .product-info p { color: var(--text-dim); font-size: 0.9em; height: 40px; margin-bottom: 20px; }
+        .card-details h3 { font-size: 1.8em; margin-bottom: 12px; font-family: 'Montserrat', sans-serif; }
+        .card-details p { color: var(--text-dim); font-size: 0.95em; margin-bottom: 25px; height: 45px; }
 
-        .card-footer { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            margin-top: 10px;
-        }
+        .card-price-row { display: flex; justify-content: space-between; align-items: center; }
+        .price-val { font-size: 2.2em; font-weight: 800; color: var(--gold); }
 
-        .price { color: var(--gold); font-size: 1.8em; font-weight: 800; }
-
-        .add-btn { 
+        .add-to-cart-btn { 
             background: #1a1a1a; 
             color: white; 
             border: 1px solid #333; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 15px; 
+            width: 65px; 
+            height: 65px; 
+            border-radius: 20px; 
+            font-size: 1.8em; 
             cursor: pointer; 
-            font-size: 1.5em;
             transition: 0.3s;
         }
 
-        .add-btn:hover { background: var(--gold); color: black; border-color: var(--gold); }
+        .add-to-cart-btn:hover { background: var(--gold); color: black; border-color: var(--gold); transform: rotate(90deg); }
 
-        /* --- YAN SEPET --- */
-        #cart-panel { 
+        /* --- SÜPER YAN SEPET --- */
+        #cart-sidebar { 
             position: fixed; 
-            right: -500px; 
+            right: -550px; 
             top: 0; 
-            width: 450px; 
+            width: 500px; 
             height: 100%; 
             background: #080808; 
-            z-index: 6000; 
-            transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1); 
-            padding: 40px; 
+            z-index: 10000; 
+            transition: 0.7s cubic-bezier(0.85, 0, 0.15, 1); 
+            padding: 50px; 
             box-sizing: border-box;
             border-left: 1px solid #222;
             display: flex;
             flex-direction: column;
+            box-shadow: -20px 0 60px rgba(0,0,0,1);
         }
 
-        #cart-panel.open { right: 0; }
+        #cart-sidebar.active { right: 0; }
 
-        .cart-title { font-size: 2em; margin-bottom: 30px; display: flex; justify-content: space-between; }
-        .cart-items { flex-grow: 1; overflow-y: auto; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .close-sidebar { font-size: 2.5em; cursor: pointer; color: var(--text-dim); transition: 0.3s; }
+        .close-sidebar:hover { color: var(--gold); }
+
+        .cart-scroll-area { flex-grow: 1; overflow-y: auto; padding-right: 15px; }
         
-        .item-row { 
+        .cart-product-item { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 20px 0; 
+            padding: 25px 0; 
             border-bottom: 1px solid #111;
+            animation: fadeInRight 0.5s ease;
         }
 
-        .qty-box { display: flex; align-items: center; gap: 15px; background: #111; padding: 8px 15px; border-radius: 12px; }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* --- ÖDEME MODAL --- */
-        .modal-overlay { 
+        .quantity-manager { display: flex; align-items: center; gap: 20px; background: #111; padding: 10px 20px; border-radius: 15px; }
+        .qty-ctrl { cursor: pointer; font-size: 1.4em; font-weight: 800; color: var(--gold); user-select: none; }
+
+        /* --- ÖDEME MODAL SİSTEMİ --- */
+        .checkout-overlay { 
             display: none; 
             position: fixed; 
             top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.98); 
-            z-index: 7000; 
+            z-index: 11000; 
             justify-content: center; 
             align-items: center; 
+            backdrop-filter: blur(10px);
         }
 
-        .modal-content { 
+        .checkout-card { 
             background: #0f0f0f; 
-            padding: 50px; 
-            border-radius: 40px; 
-            width: 600px; 
+            padding: 60px; 
+            border-radius: 50px; 
+            width: 700px; 
+            max-width: 95%;
             border: 1px solid var(--gold); 
-            text-align: center;
+            position: relative;
         }
 
-        .input-group { margin-bottom: 25px; text-align: left; }
-        .input-group label { color: var(--gold); display: block; margin-bottom: 10px; font-weight: 500; }
-        .input-group input, .input-group textarea { 
-            width: 100%; padding: 15px; background: #050505; border: 1px solid #222; border-radius: 12px; color: white; outline: none;
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 25px; }
+        .form-field { text-align: left; }
+        .form-field label { display: block; color: var(--gold); margin-bottom: 12px; font-weight: 600; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .form-field input, .form-field textarea, .form-field select { 
+            width: 100%; padding: 18px; background: #050505; border: 1px solid #222; border-radius: 15px; color: white; font-family: inherit; font-size: 1em;
         }
 
-        /* --- FOOTER & MAP --- */
-        footer { background: #020202; padding: 100px 6% 50px; border-top: 1px solid #111; margin-top: 100px; }
-        
-        .footer-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 2fr; 
-            gap: 80px; 
-            margin-bottom: 60px;
-        }
-
-        .map-box { 
-            position: relative; 
-            border-radius: 40px; 
-            overflow: hidden; 
-            height: 450px; 
-            border: 2px solid var(--gold); 
-        }
-
-        .pin { 
-            position: absolute; 
-            top: 50%; left: 50%; 
+        .complete-order-btn { 
+            width: 100%; 
+            padding: 22px; 
             background: var(--red); 
             color: white; 
-            padding: 12px 25px; 
+            border: none; 
             border-radius: 20px; 
+            font-size: 1.3em; 
             font-weight: 800; 
-            border: 3px solid white; 
-            transform: translate(-50%, -100%); 
-            animation: jump 2s infinite; 
-            z-index: 100;
+            cursor: pointer; 
+            margin-top: 20px;
+            transition: 0.3s;
         }
 
-        @keyframes jump { 0%, 100% { transform: translate(-50%, -100%); } 50% { transform: translate(-50%, -125%); } }
+        .complete-order-btn:hover { background: var(--red-hover); transform: scale(1.02); }
+
+        /* --- FOOTER & MAP (ULTRA FOCUS) --- */
+        footer { 
+            background: #020202; 
+            padding: 120px 6% 60px; 
+            border-top: 1px solid #111; 
+            margin-top: 150px; 
+            position: relative;
+        }
+
+        .footer-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 100px; }
+        
+        .footer-info h2 { font-family: 'Playfair Display', serif; font-size: 3.5em; color: var(--gold); margin-bottom: 30px; }
+        .contact-item { margin-bottom: 25px; display: flex; align-items: center; gap: 20px; color: var(--text-dim); }
+        .contact-item span { color: var(--gold); font-size: 1.5em; }
+
+        .map-grand-wrapper { 
+            position: relative; 
+            border-radius: 50px; 
+            overflow: hidden; 
+            height: 550px; 
+            border: 2px solid #1a1a1a; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+
+        .map-floating-card {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: rgba(15, 15, 15, 0.9);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid var(--gold);
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            max-width: 280px;
+        }
+
+        .marker-anim { 
+            position: absolute; 
+            top: 48%; left: 51%; 
+            background: var(--red); 
+            color: white; 
+            padding: 15px 30px; 
+            border-radius: 20px; 
+            font-weight: 900; 
+            border: 3px solid white; 
+            transform: translate(-50%, -100%); 
+            animation: highJump 2s infinite ease-in-out; 
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5);
+            pointer-events: none;
+        }
+
+        @keyframes highJump { 0%, 100% { transform: translate(-50%, -100%); } 50% { transform: translate(-50%, -130%); } }
+
+        .copyright { text-align: center; margin-top: 100px; padding-top: 40px; border-top: 1px solid #111; color: #333; font-size: 0.8em; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-container">
-            <div class="logo">EŞŞEK DÖNERCİSİ</div>
+        <div class="logo-box">
+            <span class="logo-main">EŞŞEK DÖNERCİSİ</span>
+            <span class="logo-sub">Voidmarket Global Premium</span>
         </div>
-        <div class="search-wrapper">
-            <input type="text" id="mainSearch" placeholder="Ne yemek istersin?" onkeyup="liveSearch()">
+        <div class="search-container">
+            <input type="text" id="globalSearch" placeholder="Damak tadına göre ara..." onkeyup="filterMenu()">
         </div>
-        <button class="cart-btn" onclick="toggleCartPanel()">
-            <span>🛒</span> Sepetim (<span id="count-badge">0</span>)
-        </button>
+        <div class="action-btns">
+            <button class="cart-toggle-btn" onclick="toggleCart()">
+                🛒 SEPETİM (<span id="cart-counter">0</span>)
+            </button>
+        </div>
     </nav>
 
-    <div class="hero">
-        <h1 id="hero-title">Efsane Lezzetler</h1>
-        <p>Kartal'ın kalbinde, geleneksel dönerin en gurme haliyle tanışın. Eşşek Dönercisi kalitesiyle her lokmada ayrı bir hikaye.</p>
-        <button class="cart-btn" style="padding: 18px 45px; font-size: 1.1em;" onclick="document.getElementById('menu-start').scrollIntoView()">Menüyü Keşfet</button>
-    </div>
-
-    <div class="main-container" id="menu-start">
-        <div class="section-header">
-            <h2>Gurme Seçenekler</h2>
-            <div style="color: var(--gold);">12 Özel Lezzet</div>
-        </div>
-        <div id="product-list" class="product-grid"></div>
-    </div>
-
-    <div id="cart-panel">
-        <div class="cart-title">
-            <span>Sepetiniz</span>
-            <span onclick="toggleCartPanel()" style="cursor:pointer;">✕</span>
-        </div>
-        <div class="cart-items" id="cart-content"></div>
-        <div style="margin-top:30px; border-top:1px solid #222; padding-top:30px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
-                <span style="font-size:1.4em;">Toplam:</span>
-                <span id="final-price" style="font-size:1.8em; color:var(--gold); font-weight:800;">$0.00</span>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Gerçek Dönerin <span>Zirvesi.</span></h1>
+            <p>Kartal Esentepe'de, Şeyh Şamil Ortaokulu'nun hemen yanında başlayan bu lezzet yolculuğu, şimdi global bir deneyime dönüşüyor.</p>
+            <div style="display:flex; gap:20px;">
+                <button class="cart-toggle-btn" style="padding: 20px 50px; font-size: 1.1em;" onclick="document.getElementById('menu').scrollIntoView()">MENÜYÜ İNCELE</button>
+                <button class="cart-toggle-btn" style="padding: 20px 50px; font-size: 1.1em; background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="document.getElementById('map').scrollIntoView()">YOL TARİFİ</button>
             </div>
-            <button class="cart-btn" style="width:100%; justify-content:center; padding:20px; font-size:1.2em;" onclick="openCheckout()">Siparişi Tamamla</button>
+        </div>
+    </section>
+
+    <main class="main-wrapper" id="menu">
+        <div class="grid-header">
+            <div>
+                <p style="color: var(--gold); letter-spacing: 3px; font-weight: 700; margin-bottom: 10px;">ŞEFİN SEÇKİSİ</p>
+                <h2>Premium Menü</h2>
+            </div>
+            <div id="category-filter" style="display:flex; gap:15px;">
+                </div>
+        </div>
+
+        <div id="menu-container" class="menu-grid">
+            </div>
+    </main>
+
+    <div id="cart-sidebar">
+        <div class="sidebar-header">
+            <h2 style="font-family: 'Playfair Display'; font-size: 2.5em; color: var(--gold);">Sepetiniz</h2>
+            <span class="close-sidebar" onclick="toggleCart()">✕</span>
+        </div>
+        <div class="cart-scroll-area" id="cart-items-list">
+            </div>
+        <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 40px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                <span style="font-size: 1.5em; color: var(--text-dim);">Toplam Ödeme:</span>
+                <span id="grand-total" style="font-size: 2.5em; font-weight: 900; color: var(--gold);">$0.00</span>
+            </div>
+            <button class="complete-order-btn" style="background: var(--gold); color: black;" onclick="showCheckout()">ÖDEME ADIMINA GEÇ</button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="checkout-modal">
-        <div class="modal-content">
-            <h2 style="font-family:'Playfair Display'; font-size:2.5em; margin-bottom:30px; color:var(--gold);">Sipariş Formu</h2>
-            <form action="https://formspree.io/f/mkovwdyw" method="POST">
-                <input type="hidden" name="_data" id="order-data">
-                <div class="input-group">
-                    <label>Ad Soyad</label>
-                    <input type="text" name="name" required placeholder="Eymen ...">
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                    <div class="input-group">
-                        <label>Telefon</label>
-                        <input type="tel" name="phone" required placeholder="05xx">
+    <div class="checkout-overlay" id="checkout-modal">
+        <div class="checkout-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 3em; color: var(--gold); margin-bottom: 40px;">Siparişi Tamamla</h2>
+            <form action="https://formspree.io/f/mkovwdyw" method="POST" id="order-form">
+                <input type="hidden" name="Siparis_Icerigi" id="form-order-data">
+                <input type="hidden" name="Toplam_Tutar" id="form-total-price">
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Adınız Soyadınız</label>
+                        <input type="text" name="customer_name" required placeholder="Örn: Eymen Yılmaz">
                     </div>
-                    <div class="input-group">
+                    <div class="form-field">
+                        <label>Telefon Numaranız</label>
+                        <input type="tel" name="customer_phone" required placeholder="05xx xxx xx xx">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
                         <label>Ödeme Yöntemi</label>
-                        <select name="payment" style="width:100%; padding:15px; background:#050505; color:white; border:1px solid #222; border-radius:12px;">
-                            <option value="nakit">Kapıda Nakit</option>
-                            <option value="kart">Kapıda Kredi Kartı</option>
-                            <option value="crypto">Bitcoin / ETH</option>
+                        <select name="payment_method">
+                            <option value="Kapıda Nakit">Kapıda Nakit Ödeme</option>
+                            <option value="Kapıda Kredi Kartı">Kapıda Kredi Kartı</option>
+                            <option value="Havale/EFT">Havale / EFT</option>
+                            <option value="Crypto">Kripto Para (BTC/ETH)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Teslimat Zamanı</label>
+                        <select name="delivery_time">
+                            <option value="En Kısa Sürede">En Kısa Sürede (30-45 dk)</option>
+                            <option value="1 Saat Sonra">1 Saat Sonra</option>
+                            <option value="Akşam Saatinde">Akşam Saatinde</option>
                         </select>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label>Adres</label>
-                    <textarea name="address" rows="4" required placeholder="Esentepe Mah..."></textarea>
+
+                <div class="form-field">
+                    <label>Teslimat Adresi</label>
+                    <textarea name="address" rows="4" required placeholder="Lütfen açık adresinizi, bina adını ve kapı numarasını belirtiniz..."></textarea>
                 </div>
-                <button type="submit" class="cart-btn" style="width:100%; padding:20px; font-size:1.2em;">Siparişi Gönder</button>
-                <div onclick="closeCheckout()" style="margin-top:15px; cursor:pointer; color:#555;">Vazgeç</div>
+
+                <div style="display:flex; gap:20px; margin-top:30px;">
+                    <button type="submit" class="complete-order-btn">SİPARİŞİ ONAYLA</button>
+                    <button type="button" class="complete-order-btn" style="background:transparent; border:1px solid #333; width: 200px;" onclick="hideCheckout()">İPTAL</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h2 style="color:var(--gold); font-family:'Playfair Display'; font-size:2.2em; margin-bottom:20px;">Eşşek Dönercisi</h2>
-                <p style="color:var(--text-dim);">Kartal'ın en ikonik lezzet noktası. Bizim için döner sadece bir yemek değil, bir sanattır.</p>
-                <div style="margin-top:30px;">
-                    <p>📍 Esentepe Mah. Kartal/İST</p>
-                    <p>📞 +90 216 --- -- --</p>
-                    <p>📧 info@essekdoner.com</p>
+    <footer id="map">
+        <div class="footer-layout">
+            <div class="footer-info">
+                <h2>Bize Ulaşın</h2>
+                <div class="contact-item"><span>📍</span> Esentepe Mahallesi, Kartal/İstanbul</div>
+                <div class="contact-item"><span>🏫</span> Şeyh Şamil Ortaokulu Yanı</div>
+                <div class="contact-item"><span>📞</span> +90 (216) XXX XX XX</div>
+                <div class="contact-item"><span>✉️</span> vip@essekdoner.com</div>
+                <div style="margin-top:50px;">
+                    <h4 style="color: var(--gold); margin-bottom:15px;">Çalışma Saatleri</h4>
+                    <p style="color: var(--text-dim);">Hafta İçi: 09:00 - 22:00</p>
+                    <p style="color: var(--text-dim);">Hafta Sonu: 10:00 - 23:00</p>
                 </div>
             </div>
-            <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed5" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                <div class="pin">📍 BURADAYIZ!</div>
+            <div class="map-grand-wrapper">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.2882250275815!2d29.176472876615784!3d40.9255269248473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cad3cb2f08ee8d%3A0xcb327f2926a57f6f!2zSGFscWFsxLEgU29rYWssIEthcnRhbC_EsHN0YW5idWw!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+                <div class="marker-anim">📍 EŞŞEK DÖNERCİSİ</div>
+                <div class="map-floating-card">
+                    <strong style="color: var(--gold); font-size: 1.2em;">Konum Tarifi</strong>
+                    <p style="font-size: 0.85em; color: #ccc; margin-top:10px;">
+                        Şeyh Şamil Ortaokulu'nun hemen sağındaki ana cadde üzerinde, okul binasının dibindeyiz. Haritadaki kırmızı pini takip edin!
+                    </p>
+                </div>
             </div>
         </div>
-        <center style="color:#222; border-top:1px solid #111; padding-top:30px;">© 2026 Eşşek Dönercisi. Created by voidmarket Premium.</center>
+        <div class="copyright">
+            © 2026 EŞŞEK DÖNERCİSİ GLOBAL | POWERED BY VOIDMARKET LUXURY SOFTWARE SOLUTIONS
+        </div>
     </footer>
 
     <script>
-        const menu = [
-            { id: 1, name: "Gurme Burger", price: 18.50, cat: "Premium", img: "urun1.jpg" },
-            { id: 2, name: "Sushi Set", price: 45.00, cat: "Asya", img: "urun2.jpg" },
-            { id: 3, name: "Sashimi", price: 55.00, cat: "Asya", img: "urun3.jpg" },
-            { id: 4, name: "İtalyan Spagetti", price: 22.00, cat: "Avrupa", img: "urun4.jpg" },
-            { id: 5, name: "Wagyu Antrikot", price: 95.00, cat: "Lüks", img: "urun5.jpg" },
-            { id: 6, name: "Sezar Salata", price: 15.00, cat: "Hafif", img: "urun6.jpg" },
-            { id: 7, name: "Premium Tako", price: 19.50, cat: "Meksika", img: "urun7.jpg" },
-            { id: 8, name: "Napoliten Pizza", price: 28.00, cat: "Avrupa", img: "urun8.jpg" },
-            { id: 9, name: "Meyveli Pankek", price: 12.50, cat: "Tatlı", img: "urun9.jpg" },
-            { id: 10, name: "Ballı Pankek", price: 12.50, cat: "Tatlı", img: "urun10.jpg" },
-            { id: 11, name: "Tonkotsu Ramen", price: 32.00, cat: "Asya", img: "urun11.jpg" },
-            { id: 12, name: "Eşşek Döner Special", price: 14.00, cat: "İkonik", img: "urun12.jpg" }
+        const products = [
+            { id: 1, name: "Gurme Burger", price: 18.50, cat: "Premium", desc: "Özel sos ve karamelize soğan ile.", img: "urun1.jpg" },
+            { id: 2, name: "Sushi Set", price: 45.00, cat: "Asya", desc: "12 parça taze deniz ürünleri seçkisi.", img: "urun2.jpg" },
+            { id: 3, name: "Sashimi", price: 55.00, cat: "Asya", desc: "Taze kesim somon ve orkinos dilimleri.", img: "urun3.jpg" },
+            { id: 4, name: "İtalyan Spagetti", price: 22.00, cat: "Avrupa", desc: "Ev yapımı taze makarna ve fesleğen.", img: "urun4.jpg" },
+            { id: 5, name: "Wagyu Antrikot", price: 95.00, cat: "Lüks", desc: "A5 kalite Japon Wagyu sığırı.", img: "urun5.jpg" },
+            { id: 6, name: "Sezar Salata", price: 15.00, cat: "Hafif", desc: "Parmesan ve çıtır krutonlar ile.", img: "urun6.jpg" },
+            { id: 7, name: "Premium Tako", price: 19.50, cat: "Meksika", desc: "Baharatlı et ve taze avokado püresi.", img: "urun7.jpg" },
+            { id: 8, name: "Napoliten Pizza", price: 28.00, cat: "Avrupa", desc: "Odun ateşinde, incecik hamur.", img: "urun8.jpg" },
+            { id: 9, name: "Meyveli Pankek", price: 12.50, cat: "Tatlı", desc: "Mevsim meyveleri ve akçaağaç şurubu.", img: "urun9.jpg" },
+            { id: 10, name: "Ballı Pankek", price: 12.50, cat: "Tatlı", desc: "Süzme bal ve organik tereyağı.", img: "urun10.jpg" },
+            { id: 11, name: "Tonkotsu Ramen", price: 32.00, cat: "Asya", desc: "18 saat kaynatılmış kemik suyu.", img: "urun11.jpg" },
+            { id: 12, name: "Eşşek Döner Special", price: 14.00, cat: "İkonik", desc: "Gizli tarifli döner ve özel lavaş.", img: "urun12.jpg" }
         ];
 
         let cart = [];
 
-        function render(data) {
-            document.getElementById('product-list').innerHTML = data.map(p => `
+        // Ürünleri Render Et
+        function initMenu(data) {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = data.map(p => `
                 <div class="product-card">
-                    <div class="badge">${p.cat}</div>
-                    <div class="image-container">
-                        <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Gurme+Lezzet'">
+                    <div class="category-tag">${p.cat}</div>
+                    <div class="img-wrapper">
+                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Gurme+Lezzet'">
                     </div>
-                    <div class="product-info">
+                    <div class="card-details">
                         <h3>${p.name}</h3>
-                        <p>Şefin özel tarifi ile hazırlanan eşsiz lezzet deneyimi.</p>
-                        <div class="card-footer">
-                            <span class="price">$${p.price.toFixed(2)}</span>
-                            <button class="add-btn" onclick="addToCart(${p.id})">+</button>
+                        <p>${p.desc}</p>
+                        <div class="card-price-row">
+                            <span class="price-val">$${p.price.toFixed(2)}</span>
+                            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">+</button>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
+        // Sepete Ekle
         function addToCart(id) {
-            const item = menu.find(x => x.id === id);
-            const inCart = cart.find(x => x.id === id);
-            if(inCart) inCart.qty++; else cart.push({...item, qty:1});
-            updateUI();
-            if(!document.getElementById('cart-panel').classList.contains('open')) toggleCartPanel();
+            const p = products.find(x => x.id === id);
+            const exists = cart.find(x => x.id === id);
+            
+            if(exists) {
+                exists.qty++;
+            } else {
+                cart.push({...p, qty: 1});
+            }
+            
+            updateCart();
+            if(!document.getElementById('cart-sidebar').classList.contains('active')) {
+                toggleCart();
+            }
         }
 
-        function updateQty(id, d) {
+        // Miktar Değiştir
+        function changeQty(id, delta) {
             const item = cart.find(x => x.id === id);
-            item.qty += d;
-            if(item.qty <= 0) cart = cart.filter(x => x.id !== id);
-            updateUI();
+            item.qty += delta;
+            
+            if(item.qty <= 0) {
+                cart = cart.filter(x => x.id !== id);
+            }
+            
+            updateCart();
         }
 
-        function updateUI() {
-            let total = 0, count = 0;
-            document.getElementById('cart-content').innerHTML = cart.map(i => {
-                total += i.price * i.qty; count += i.qty;
+        // Sepeti Güncelle
+        function updateCart() {
+            const list = document.getElementById('cart-items-list');
+            let total = 0;
+            let count = 0;
+
+            list.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                count += item.qty;
                 return `
-                <div class="item-row">
-                    <div>
-                        <div style="font-weight:600;">${i.name}</div>
-                        <div style="color:var(--gold);">$${(i.price*i.qty).toFixed(2)}</div>
+                    <div class="cart-product-item">
+                        <div style="text-align:left;">
+                            <div style="font-weight:700; font-size:1.1em;">${item.name}</div>
+                            <div style="color: var(--gold); font-size:0.9em;">Birim: $${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="quantity-manager">
+                            <span class="qty-ctrl" onclick="changeQty(${item.id}, -1)">-</span>
+                            <span style="font-weight:bold; min-width:20px; text-align:center;">${item.qty}</span>
+                            <button class="qty-ctrl" style="background:none; border:none;" onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                        <div style="font-weight:800; min-width:80px; text-align:right;">
+                            $${(item.price * item.qty).toFixed(2)}
+                        </div>
                     </div>
-                    <div class="qty-box">
-                        <span onclick="updateQty(${i.id},-1)" style="cursor:pointer;">-</span>
-                        <span>${i.qty}</span>
-                        <span onclick="updateQty(${i.id},1)" style="cursor:pointer;">+</span>
-                    </div>
-                </div>`;
+                `;
             }).join('');
-            document.getElementById('final-price').innerText = "$" + total.toFixed(2);
-            document.getElementById('count-badge').innerText = count;
-            document.getElementById('order-data').value = JSON.stringify(cart);
+
+            document.getElementById('grand-total').innerText = "$" + total.toFixed(2);
+            document.getElementById('cart-counter').innerText = count;
+            document.getElementById('form-order-data').value = JSON.stringify(cart);
+            document.getElementById('form-total-price').value = "$" + total.toFixed(2);
         }
 
-        function liveSearch() {
-            const q = document.getElementById('mainSearch').value.toLowerCase();
-            render(menu.filter(x => x.name.toLowerCase().includes(q) || x.cat.toLowerCase().includes(q)));
+        // Arama Motoru
+        function filterMenu() {
+            const query = document.getElementById('globalSearch').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.cat.toLowerCase().includes(query) ||
+                p.desc.toLowerCase().includes(query)
+            );
+            initMenu(filtered);
         }
 
-        function toggleCartPanel() { document.getElementById('cart-panel').classList.toggle('open'); }
-        function openCheckout() { document.getElementById('checkout-modal').style.display='flex'; }
-        function closeCheckout() { document.getElementById('checkout-modal').style.display='none'; }
+        // Sidebar & Modal Kontrolleri
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('active'); }
+        function showCheckout() { if(cart.length > 0) document.getElementById('checkout-modal').style.display = 'flex'; }
+        function hideCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
 
-        render(menu);
+        // Başlangıç
+        initMenu(products);
     </script>
 </body>
 </html>
